@@ -21,7 +21,13 @@
   },
   "plugins": ["solid", "@typescript-eslint"],
   "rules": {
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "tailwindcss/no-custom-classname": [
+      1,
+      {
+        "config": "./tailwind.config.cjs"
+      }
+    ]
   },
   "globals": {
     "chrome": "readonly"

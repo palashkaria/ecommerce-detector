@@ -165,4 +165,5 @@ module.exports = {
     preflight: false,
   },
   important: "#ecom-detect-extension-root",
+  prefix: "ecom-",
 };

@@ -18,14 +18,18 @@ setSignal();
 const NotFound = () => {
   return (
     <div class="ecom-detect-app-wrap h-40 ">
-      <header class="flex border-b-2 p-2">
-        <div class="flex flex-row items-center">
-          <img src={chrome.runtime.getURL(logo)} alt="logo" class="h-8 w-8" />
-          <p class="ml-2 text-xl font-bold">Detector</p>
+      <header class="ecom-flex ecom-border-b-2 ecom-p-2">
+        <div class="ecom-flex ecom-flex-row ecom-items-center">
+          <img
+            src={chrome.runtime.getURL(logo)}
+            alt="logo"
+            class="ecom-h-8 ecom-w-8"
+          />
+          <p class="ecom-ml-2 ecom-text-xl ecom-font-bold">Detector</p>
         </div>
       </header>
-      <div class="flex">
-        <p class="flex p-2 text-base">
+      <div class="ecom-flex">
+        <p class="ecom-flex ecom-p-2 ecom-text-base">
           This site doesn't use an e-commerce platform
         </p>
       </div>
@@ -39,26 +43,26 @@ const Popup = () => {
         <NotFound />
       </Show>
       <Show when={getPlatform() !== PlatformEnum.NotFound}>
-        <div class="ecom-detect-app-wrap h-40 ">
-          <header class="flex border-b-2 p-2">
-            <div class="flex flex-row items-center">
+        <div class="ecom-detect-app-wrap ecom-h-40 ">
+          <header class="ecom-flex ecom-border-b-2 ecom-p-2">
+            <div class="ecom-flex ecom-flex-row ecom-items-center">
               <img
                 src={chrome.runtime.getURL(logo)}
                 alt="logo"
-                class="h-8 w-8"
+                class="ecom-h-8 ecom-w-8"
               />
-              <p class="ml-2 text-xl font-bold">Detector</p>
+              <p class="ecom-ml-2 ecom-text-xl ecom-font-bold">Detector</p>
             </div>
           </header>
-          <div class="grid grid-flow-col items-center p-2">
-            <p class="flex text-base">Platform</p>
-            <div class="flex items-center">
+          <div class="ecom-grid ecom-grid-flow-col ecom-items-center ecom-p-2">
+            <p class="ecom-flex ecom-text-base">Platform</p>
+            <div class="ecom-flex ecom-items-center">
               <img
-                class="h-7 w-6"
+                class="ecom-h-7 ecom-w-6"
                 src={platformToSvg[getPlatform()]}
                 alt={getPlatform()}
               />{" "}
-              <p class="ml-2 text-sm font-bold text-neutral-900">
+              <p class="ecom-ml-2 ecom-text-sm ecom-font-bold ecom-text-neutral-900">
                 {getPlatform()}
               </p>
             </div>
