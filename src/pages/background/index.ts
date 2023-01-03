@@ -26,14 +26,9 @@ const getDetailsFromSite = () => {
     url,
   };
 };
-const getSiteDetails = async () => {
-  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-  const tab = tabs[0];
-  if (!tab.id) {
-    return;
-  }
+const getSiteDetails = async (tabId: number) => {
   const finalResult = await chrome.scripting.executeScript({
-    target: { tabId: tab.id },
+    target: { tabId },
     world: "MAIN",
     func: getDetailsFromSite,
   });
@@ -53,24 +48,24 @@ const getSiteDetails = async () => {
 chrome.runtime.onMessage.addListener(async (request, sender) => {
   switch (request.type) {
     case "injectDetectionScript":
-      const scriptResult = await getSiteDetails();
       if (sender.tab.id) {
-        chrome.tabs.sendMessage(sender.tab?.id, {
-          type: "platformDetected",
-          siteDetails: scriptResult,
-        });
+        const scriptResult = await getSiteDetails(sender.tab.id);
         chrome.action.setBadgeBackgroundColor(
           {
             color: platformToColor[scriptResult.platform],
-            tabId: sender.tab?.id,
+            tabId: sender.tab.id,
           },
           () => {
             chrome.action.setBadgeText({
               text: platformToBadgeText[scriptResult.platform],
-              tabId: sender.tab?.id,
+              tabId: sender.tab.id,
             });
           }
         );
+        chrome.tabs.sendMessage(sender.tab.id, {
+          type: "platformDetected",
+          siteDetails: scriptResult,
+        });
       }
       return true;
     default:
