@@ -8,7 +8,6 @@ module.exports = {
     popup: path.join(srcDir, "popup.tsx"),
     background: path.join(srcDir, "background.ts"),
     content_script: path.join(srcDir, "contentScripts/content_script.tsx"),
-    detect: path.join(srcDir, "contentScripts/detect/detect.ts"),
   },
   output: {
     path: path.join(__dirname, "../dist/js"),
@@ -27,13 +26,43 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
-        // exclude node modules and de tect folder
+        exclude: /node_modules|detect/,
+      },
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            babelrc: false,
+            configFile: false,
+            presets: ["@babel/preset-env", "solid", "@babel/preset-typescript"],
+            plugins: [
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-proposal-object-rest-spread",
+            ],
+          },
+        },
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "postcss-loader",
+          },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".css"],
   },
   plugins: [
     new CopyPlugin({
