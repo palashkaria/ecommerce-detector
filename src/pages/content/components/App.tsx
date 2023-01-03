@@ -38,7 +38,9 @@ const notify = async () => {
                 />
               </div>
               <div class="ecom-ml-3 ecom-w-0 ecom-flex-1 ecom-pt-0.5">
-                <p class="ecom-text-sm ecom-font-medium">{platform}</p>
+                <p class="ecom-text-sm ecom-font-medium ecom-text-neutral-50">
+                  {platform}
+                </p>
               </div>
               <div class="ecom-ml-4 ecom-flex ecom-shrink-0">
                 <button
@@ -55,7 +57,7 @@ const notify = async () => {
       );
     },
     {
-      duration: 500000,
+      duration: 5000,
       unmountDelay: 200,
     }
   );
