@@ -1,4 +1,8 @@
-import { platformToColor, platformToSvg } from "@src/shared/PlatformData";
+import {
+  PlatformEnum,
+  platformToColor,
+  platformToSvg,
+} from "@src/shared/PlatformData";
 import "@src/styles/index.css";
 import toast, { Toaster } from "solid-toast";
 // import logo from "@src/assets/img/logo.svg";
@@ -8,14 +12,17 @@ const notify = async () => {
   const domain = new URL(window.location.href).hostname;
   const siteDetails = await chrome.storage.local.get(domain);
   const platform = siteDetails[domain].platform;
-
+  if (platform && platform === PlatformEnum.NotFound) {
+    return;
+  }
   // Custom JSX Toast
   toast.custom(
     (t) => (
       <div
+        // eslint-disable-next-line tailwindcss/no-custom-classname
         class={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } pointer-events-auto relative w-[290px] max-w-sm overflow-hidden rounded-lg bg-white text-neutral-50 shadow-lg ring-1 ring-black ring-opacity-5`}
+        } pointer-events-auto relative w-[290px] max-w-sm overflow-hidden rounded-lg bg-white text-neutral-50 shadow-lg ring-1 ring-black/5`}
         style={{
           "background-color": platformToColor[platform],
         }}
@@ -46,7 +53,7 @@ const notify = async () => {
       </div>
     ),
     {
-      duration: 1000000,
+      duration: 5000,
       unmountDelay: 200,
     }
   );

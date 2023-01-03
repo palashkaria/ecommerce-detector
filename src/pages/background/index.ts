@@ -1,3 +1,5 @@
+import { platformToBadgeText, platformToColor } from "@src/shared/PlatformData";
+
 // this enum needs to be duplicated because it's injected
 const getDetailsFromSite = () => {
   const PLATFORM_ENUM = {
@@ -10,7 +12,6 @@ const getDetailsFromSite = () => {
   };
   let platform = PLATFORM_ENUM.NotFound;
   if (window.Shopify) {
-    console.log("found shopify!");
     platform = PLATFORM_ENUM.shopify;
   }
   if (window.woocommerce_params) {
@@ -53,11 +54,24 @@ chrome.runtime.onMessage.addListener(async (request, sender) => {
   switch (request.type) {
     case "injectDetectionScript":
       const scriptResult = await getSiteDetails();
-      sender.tab?.id &&
+      if (sender.tab.id) {
         chrome.tabs.sendMessage(sender.tab?.id, {
           type: "platformDetected",
           siteDetails: scriptResult,
         });
+        chrome.action.setBadgeBackgroundColor(
+          {
+            color: platformToColor[scriptResult.platform],
+            tabId: sender.tab?.id,
+          },
+          () => {
+            chrome.action.setBadgeText({
+              text: platformToBadgeText[scriptResult.platform],
+              tabId: sender.tab?.id,
+            });
+          }
+        );
+      }
       return true;
     default:
       return true;

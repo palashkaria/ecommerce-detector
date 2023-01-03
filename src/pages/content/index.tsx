@@ -8,11 +8,7 @@ const init = async () => {
     type: "injectDetectionScript",
   });
   chrome.runtime.onMessage.addListener((message) => {
-    if (
-      message.type === "platformDetected" &&
-      message.siteDetails &&
-      message.siteDetails.platform !== "NotFound"
-    ) {
+    if (message.type === "platformDetected" && message.siteDetails) {
       const domain = new URL(message.siteDetails.url).hostname;
       chrome.storage.local.set({
         [domain]: message.siteDetails,

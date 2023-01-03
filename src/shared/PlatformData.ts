@@ -15,9 +15,19 @@ export const platformToColor = {
   [PlatformEnum.magento3]: "#f26c4f",
   [PlatformEnum.prestashop]: "#5d9cec",
   [PlatformEnum.wix]: "#ff8c00",
+  [PlatformEnum.NotFound]: "#ddd",
 };
 
 export const platformToSvg = {
   [PlatformEnum.shopify]: chrome.runtime.getURL(shopify),
   [PlatformEnum.woocomerce]: chrome.runtime.getURL(woocommerce),
+};
+
+export const platformToBadgeText = {
+  [PlatformEnum.shopify]: "S",
+  [PlatformEnum.woocomerce]: "W",
+  [PlatformEnum.magento3]: "M",
+  [PlatformEnum.prestashop]: "P",
+  [PlatformEnum.wix]: "Wx",
+  [PlatformEnum.NotFound]: "X",
 };
