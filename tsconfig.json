@@ -1,22 +1,32 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
-    "incremental": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "allowJs": false,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
     "skipLibCheck": true,
-    "strict": true,
-    "module": "commonjs",
-    "target": "es6",
     "esModuleInterop": true,
-    "sourceMap": false,
-    "rootDir": "src",
-    "outDir": "dist/js",
-    "noEmitOnError": true,
-    "jsx": "react",
-    "typeRoots": ["node_modules/@types"]
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "types": ["unplugin-icons/types/solid", "vite/client", "node"],
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"]
+    }
   },
-  "references": [{ "path": "./src/contentScripts" }],
-  "include": ["src/**/*"]
+  "include": [
+    "src",
+    "utils",
+    "vite.config.ts",
+    "node_modules/@types",
+    "src/manifest.ts"
+  ]
 }
