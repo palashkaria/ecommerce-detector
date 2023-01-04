@@ -1,7 +1,9 @@
 import shopify from "@src/assets/logos/shopify.svg";
 import wix from "@src/assets/logos/wix.svg";
 import woocommerce from "@src/assets/logos/woocommerce.svg";
+import { createSignal } from "solid-js";
 
+export const [getDetectionState, setDetectionState] = createSignal("on");
 export enum PlatformEnum {
   shopify = "Shopify",
   wix = "Wix",

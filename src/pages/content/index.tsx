@@ -21,4 +21,9 @@ const init = async () => {
   });
 };
 
-window.addEventListener("load", init);
+const start = async () => {
+  const { detectionState } = await chrome.storage.local.get("detectionState");
+  detectionState !== "off" && window.addEventListener("load", init);
+};
+
+start();
