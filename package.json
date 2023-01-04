@@ -1,7 +1,7 @@
 {
   "name": "e-commerce-detector",
-  "displayName": "E-commerce detector",
-  "version": "0.202212.1",
+  "displayName": "E-commerce detector: Shopify/WooCommerce/Wix",
+  "version": "0.0.1.0",
   "description": "Detect which e-commerce platform any site is using",
   "license": "MIT",
   "repository": {
