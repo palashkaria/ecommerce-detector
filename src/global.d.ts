@@ -24,5 +24,6 @@ declare global {
     Shopify: unknown;
     woocommerce_params: unknown;
     magentoStorefrontEvents: unknown;
+    wixDevelopersAnalytics: unknown;
   }
 }

@@ -20,4 +20,5 @@ const init = async () => {
     }
   });
 };
-init();
+
+window.addEventListener("load", init);

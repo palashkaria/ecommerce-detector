@@ -20,6 +20,9 @@ const getDetailsFromSite = () => {
   if (window.magentoStorefrontEvents) {
     platform = PLATFORM_ENUM.magento3;
   }
+  if (window.wixDevelopersAnalytics) {
+    platform = PLATFORM_ENUM.wix;
+  }
   const url = window.location.href;
   return {
     platform,
